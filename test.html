@@ -53,15 +53,24 @@ currently partially implemented in Android M, Chrome OS, Linux, and Mac.</p>
     </script>
 <script>
 function onButtonClick() {
-  let serviceUuid = document.querySelector('#service').value;
-  if (serviceUuid.startsWith('0x')) {
-    serviceUuid = parseInt(serviceUuid);
+  let filters = [];
+let filterNamePrefix = 'Kano-Wand';
+  if (filterNamePrefix) {
+    filters.push({namePrefix: filterNamePrefix});
   }
-
-  let characteristicUuid = document.querySelector('#characteristic').value;
-  if (characteristicUuid.startsWith('0x')) {
-    characteristicUuid = parseInt(characteristicUuid);
-  }
+let options = {};
+options.filters = filters;
+ log('Requesting Bluetooth Device...');
+  log('with ' + JSON.stringify(options));
+  navigator.bluetooth.requestDevice(options)
+  .then(device => {
+    log('> Name:             ' + device.name);
+    log('> Id:               ' + device.id);
+    log('> Connected:        ' + device.gatt.connected);
+  })
+  .catch(error => {
+    log('Argh! ' + error);
+  });
 
   log('Requesting Bluetooth Device...');
   navigator.bluetooth.requestDevice({filters: [{services: [serviceUuid]}]})
