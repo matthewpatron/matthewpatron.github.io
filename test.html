@@ -116,21 +116,6 @@ Characteristics (Async Await)</a> sample.</p>
   });
     </script>
 <script>
-  log = ChromeSamples.log;
-
-  function isWebBluetoothEnabled() {
-    if (navigator.bluetooth) {
-      return true;
-    } else {
-      ChromeSamples.setStatus('Web Bluetooth API is not available.\n' +
-          'Please make sure the "Experimental Web Platform features" flag is enabled.');
-      return false;
-    }
-  }
-</script>
-    
-    
-<script>
   var ChromeSamples = {
     log: function() {
       var line = Array.prototype.slice.call(arguments).map(function(argument) {
@@ -157,7 +142,19 @@ Characteristics (Async Await)</a> sample.</p>
     }
   };
 </script>    
-    
+<script>
+  log = ChromeSamples.log;
+
+  function isWebBluetoothEnabled() {
+    if (navigator.bluetooth) {
+      return true;
+    } else {
+      ChromeSamples.setStatus('Web Bluetooth API is not available.\n' +
+          'Please make sure the "Experimental Web Platform features" flag is enabled.');
+      return false;
+    }
+  }
+</script>    
     <h3>Live Output</h3>
 <div id="output" class="output">
   <div id="content"></div>
