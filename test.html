@@ -1,3 +1,15 @@
+<html>
+  <script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    if (isWebBluetoothEnabled()) {
+      ChromeSamples.clearLog();
+      onButtonClick();
+    }
+  });
+
+
 function onButtonClick() {
   let serviceUuid = document.querySelector('#service').value;
   if (serviceUuid.startsWith('0x')) {
@@ -36,3 +48,5 @@ function onButtonClick() {
     log('Argh! ' + error);
   });
 }
+    </script>
+</html>
